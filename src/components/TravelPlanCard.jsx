@@ -4,6 +4,9 @@ import { useState } from "react";
 function TravelPlanCard({ plan }) {
   const [plan1, setPlan1] = useState(plan);
   const [favourites, setFavourites] = useState([]);
+  const [color, setColor] = useState("");
+
+  const colors = ["purple", "blue", "green", "yellow", "orange", "red"];
 
   const addFavourites = (id) => {
     let favItem;
@@ -58,7 +61,11 @@ function TravelPlanCard({ plan }) {
               </button>
               <button
                 className="favourite-btn"
-                onClick={() => addFavourites(place.id)}
+                style={{ backgroundColor: color }}
+                onClick={() => {
+                  setColor(colors[place.id % 6]);
+                  addFavourites(place.id);
+                }}
               >
                 ♡
               </button>
